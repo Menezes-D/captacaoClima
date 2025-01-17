@@ -26,6 +26,30 @@ def buscar_dados():
     except Exception as e:
         messagebox.showerror("Erro", f"Erro ao buscar dados: {e}")
 
+# Função para salvar dados na planilha
+def salvar_dados(temperatura, umidade):
+    try:
+        
+        nome_arquivo = "dados_climaticos.xlsx"
 
+        # Obter data e hora atual
+        data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+        try:
+            workbook = openpyxl.load_workbook(nome_arquivo)
+            sheet = workbook.active
+        except FileNotFoundError:
+            workbook = openpyxl.Workbook()
+            sheet = workbook.active
+            sheet.append(["Data/Hora", "Temperatura (°C)", "Umidade (%)"])
+
+        # Adicionar dados na planilha
+        sheet.append([data_hora, temperatura, umidade])
+
+        # Salvar arquivo
+        workbook.save(nome_arquivo)
+
+    except Exception as e:
+        messagebox.showerror("Erro", f"Erro ao salvar dados: {e}")
 
 
