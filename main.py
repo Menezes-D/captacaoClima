@@ -52,4 +52,18 @@ def salvar_dados(temperatura, umidade):
     except Exception as e:
         messagebox.showerror("Erro", f"Erro ao salvar dados: {e}")
 
+# Interface 
+def criar_interface():
+    janela = tk.Tk()
+    janela.title("Previsão do Tempo de São Paulo")
+    janela.geometry("300x100")
 
+    # Botão para buscar previsão
+    botao_buscar = tk.Button(janela, text="Buscar Previsão", command=buscar_dados, font=("Arial", 12), bg="lightblue")
+    botao_buscar.pack(pady=30)
+
+    janela.mainloop()
+
+
+if __name__ == "__main__":
+    criar_interface()
